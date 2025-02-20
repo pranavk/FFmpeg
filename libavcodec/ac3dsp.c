@@ -25,6 +25,7 @@
 
 #include "config.h"
 #include "libavutil/attributes.h"
+#include "libavutil/attributes_internal.h"
 #include "libavutil/common.h"
 #include "libavutil/intmath.h"
 #include "libavutil/mem_internal.h"
@@ -104,6 +105,7 @@ static void ac3_update_bap_counts_c(uint16_t mant_cnt[16], uint8_t *bap,
         mant_cnt[bap[len]]++;
 }
 
+attribute_mcmodel_small
 DECLARE_ALIGNED(16, const uint16_t, ff_ac3_bap_bits)[16] = {
     0,  0,  0,  3,  0,  4,  5,  6,  7,  8,  9, 10, 11, 12, 14, 16
 };

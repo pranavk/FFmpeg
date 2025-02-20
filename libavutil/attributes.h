@@ -40,6 +40,12 @@
 #    define AV_HAS_BUILTIN(x) 0
 #endif
 
+#ifdef __has_attribute
+#    define AV_HAS_ATTRIBUTE(x) __has_attribute(x)
+#else
+#    define AV_HAS_ATTRIBUTE(x) 0
+#endif
+
 #ifndef av_always_inline
 #if AV_GCC_VERSION_AT_LEAST(3,1)
 #    define av_always_inline __attribute__((always_inline)) inline

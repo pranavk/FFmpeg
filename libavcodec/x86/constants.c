@@ -18,17 +18,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+#include "libavutil/attributes_internal.h"
 #include "libavutil/mem_internal.h"
 #include "libavutil/x86/asm.h" // for xmm_reg
 #include "constants.h"
 
+attribute_mcmodel_small
 DECLARE_ALIGNED(32, const ymm_reg,  ff_pw_1)    = { 0x0001000100010001ULL, 0x0001000100010001ULL,
                                                     0x0001000100010001ULL, 0x0001000100010001ULL };
 DECLARE_ALIGNED(32, const ymm_reg,  ff_pw_2)    = { 0x0002000200020002ULL, 0x0002000200020002ULL,
                                                     0x0002000200020002ULL, 0x0002000200020002ULL };
 DECLARE_ASM_ALIGNED(16, const xmm_reg,  ff_pw_3)    = { 0x0003000300030003ULL, 0x0003000300030003ULL };
+attribute_mcmodel_small
 DECLARE_ASM_ALIGNED(32, const ymm_reg,  ff_pw_4)    = { 0x0004000400040004ULL, 0x0004000400040004ULL,
                                                     0x0004000400040004ULL, 0x0004000400040004ULL };
+attribute_mcmodel_small
 DECLARE_ASM_ALIGNED(16, const xmm_reg,  ff_pw_5)    = { 0x0005000500050005ULL, 0x0005000500050005ULL };
 DECLARE_ALIGNED(16, const xmm_reg,  ff_pw_8)    = { 0x0008000800080008ULL, 0x0008000800080008ULL };
 DECLARE_ASM_ALIGNED(16, const xmm_reg,  ff_pw_9)    = { 0x0009000900090009ULL, 0x0009000900090009ULL };
@@ -49,6 +53,7 @@ DECLARE_ALIGNED(32, const ymm_reg,  ff_pw_256)  = { 0x0100010001000100ULL, 0x010
 DECLARE_ALIGNED(32, const ymm_reg,  ff_pw_512)  = { 0x0200020002000200ULL, 0x0200020002000200ULL,
                                                     0x0200020002000200ULL, 0x0200020002000200ULL };
 DECLARE_ALIGNED(16, const xmm_reg,  ff_pw_1019) = { 0x03FB03FB03FB03FBULL, 0x03FB03FB03FB03FBULL };
+attribute_mcmodel_small
 DECLARE_ALIGNED(32, const ymm_reg,  ff_pw_1023) = { 0x03ff03ff03ff03ffULL, 0x03ff03ff03ff03ffULL,
                                                     0x03ff03ff03ff03ffULL, 0x03ff03ff03ff03ffULL};
 DECLARE_ALIGNED(32, const ymm_reg,  ff_pw_1024) = { 0x0400040004000400ULL, 0x0400040004000400ULL,
@@ -66,13 +71,16 @@ DECLARE_ALIGNED(32, const ymm_reg,  ff_pw_m1)   = { 0xFFFFFFFFFFFFFFFFULL, 0xFFF
 
 DECLARE_ALIGNED(32, const ymm_reg,  ff_pb_0)    = { 0x0000000000000000ULL, 0x0000000000000000ULL,
                                                     0x0000000000000000ULL, 0x0000000000000000ULL };
+attribute_mcmodel_small
 DECLARE_ALIGNED(32, const ymm_reg,  ff_pb_1)    = { 0x0101010101010101ULL, 0x0101010101010101ULL,
                                                     0x0101010101010101ULL, 0x0101010101010101ULL };
 DECLARE_ALIGNED(32, const ymm_reg,  ff_pb_2)    = { 0x0202020202020202ULL, 0x0202020202020202ULL,
                                                     0x0202020202020202ULL, 0x0202020202020202ULL };
+attribute_mcmodel_small
 DECLARE_ALIGNED(32, const ymm_reg,  ff_pb_3)    = { 0x0303030303030303ULL, 0x0303030303030303ULL,
                                                     0x0303030303030303ULL, 0x0303030303030303ULL };
 DECLARE_ALIGNED(32, const xmm_reg,  ff_pb_15)   = { 0x0F0F0F0F0F0F0F0FULL, 0x0F0F0F0F0F0F0F0FULL };
+attribute_mcmodel_small
 DECLARE_ALIGNED(32, const ymm_reg,  ff_pb_80)   = { 0x8080808080808080ULL, 0x8080808080808080ULL,
                                                     0x8080808080808080ULL, 0x8080808080808080ULL };
 DECLARE_ALIGNED(32, const ymm_reg,  ff_pb_FE)   = { 0xFEFEFEFEFEFEFEFEULL, 0xFEFEFEFEFEFEFEFEULL,

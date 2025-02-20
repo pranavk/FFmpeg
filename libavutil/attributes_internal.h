@@ -19,6 +19,7 @@
 #ifndef AVUTIL_ATTRIBUTES_INTERNAL_H
 #define AVUTIL_ATTRIBUTES_INTERNAL_H
 
+#include "config.h"
 #include "attributes.h"
 
 #if (AV_GCC_VERSION_AT_LEAST(4,0) || defined(__clang__)) && (defined(__ELF__) || defined(__MACH__))
@@ -29,6 +30,21 @@
 #    define attribute_visibility_hidden
 #    define FF_VISIBILITY_PUSH_HIDDEN
 #    define FF_VISIBILITY_POP_HIDDEN
+#endif
+
+/**
+ * Some globals defined in C files are used from hardcoded asm that assumes small
+ * code model (that is, accessing these globals without GOT). This is a problem
+ * when FFMpeg is built with medium code model (-mcmodel=medium) which allocates
+ * all globals in a data section that's unreachable with PC relative instructions
+ * (small code model instruction sequence). We mark all such globals with this
+ * attribute_mcmodel_small to ensure assembly accessible globals continue to be
+ * allocated in sections reachable from PC relative instructions.
+ */
+#if ARCH_X86_64 && defined(__ELF__) && AV_HAS_ATTRIBUTE(model)
+#    define attribute_mcmodel_small __attribute__(model("small"))
+#else
+#    define attribute_mcmodel_small
 #endif
 
 #endif /* AVUTIL_ATTRIBUTES_INTERNAL_H */
